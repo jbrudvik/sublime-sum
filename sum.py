@@ -6,7 +6,19 @@ class SumCommand(sublime_plugin.TextCommand):
         sum_view.set_name('Sum')
 
         file_text = self.view.substr(sublime.Region(0, self.view.size()))
-        sum_view.insert(edit, 0, file_text)
+
+        numbers = []
+        for s in file_text.split():
+            if s.isdigit():
+                numbers.append(int(s))
+            else:
+                try:
+                    numbers.append(float(s))
+                except ValueError:
+                    pass
+
+        result = sum(numbers)
+        sum_view.insert(edit, 0, str(result))
 
         sum_view.set_read_only(True)
         sum_view.set_scratch(True)
