@@ -5,3 +5,4 @@ class SumCommand(sublime_plugin.TextCommand):
     new_view = self.view.window().new_file()
     new_view.set_name('Sum')
     new_view.insert(edit, 0, '42')
+    new_view.set_scratch(True)
