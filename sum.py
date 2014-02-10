@@ -9,9 +9,9 @@ class SumCommand(sublime_plugin.TextCommand):
 
         numbers = []
         for s in file_text.split():
-            if s.isdigit():
+            try:
                 numbers.append(int(s))
-            else:
+            except ValueError:
                 try:
                     numbers.append(float(s))
                 except ValueError:
