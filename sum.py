@@ -6,19 +6,41 @@ class SumCommand(sublime_plugin.TextCommand):
         sum_view.set_name('Sum')
 
         file_text = self.view.substr(sublime.Region(0, self.view.size()))
-
-        numbers = []
-        for s in file_text.split():
-            try:
-                numbers.append(int(s))
-            except ValueError:
-                try:
-                    numbers.append(float(s))
-                except ValueError:
-                    pass
-
+        numbers = [to_number(s) for s in file_text.split() if is_number(s)]
         result = sum(numbers)
+
         sum_view.insert(edit, 0, str(result))
 
         sum_view.set_read_only(True)
         sum_view.set_scratch(True)
+
+def is_int(s):
+    """Return boolean indicating whether a string can be parsed to an int."""
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
+
+def is_float(s):
+    """Return boolean indicating whether a string can be parsed to an float."""
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+def is_number(s):
+    """Return boolean indicating whether a string can be parsed to an int or float."""
+    return is_int(s) or is_float(s)
+
+def to_number(s):
+    """
+    Parse and return number from string.
+
+    Return float only if number is not an int. Assume number can be parsed from string.
+    """
+    try:
+        return int(s)
+    except ValueError:
+        return float(s)
