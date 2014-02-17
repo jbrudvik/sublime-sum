@@ -1,5 +1,7 @@
-import sublime, sublime_plugin
+import sublime
+import sublime_plugin
 import re
+
 
 class SumCommand(sublime_plugin.TextCommand):
     def run(self, edit):
@@ -16,6 +18,7 @@ class SumCommand(sublime_plugin.TextCommand):
         sum_view.set_read_only(True)
         sum_view.set_scratch(True)
 
+
 def strip_currency(s):
     """
     Return a string without leading or trailing currency symbols
@@ -29,6 +32,7 @@ def strip_currency(s):
         s = s[0] + s[2:]
     return s
 
+
 def is_int(s):
     """Return boolean indicating whether a string can be parsed to an int."""
     try:
@@ -36,6 +40,7 @@ def is_int(s):
         return True
     except ValueError:
         return False
+
 
 def is_float(s):
     """Return boolean indicating whether a string can be parsed to an float."""
@@ -45,15 +50,22 @@ def is_float(s):
     except ValueError:
         return False
 
+
 def is_number(s):
-    """Return boolean indicating whether a string can be parsed to an int or float."""
+    """
+    Return boolean indicating whether a string can be parsed to a number.
+
+    Legal numbers are of int or float type.
+    """
     return is_int(s) or is_float(s)
+
 
 def to_number(s):
     """
     Parse and return number from string.
 
-    Return float only if number is not an int. Assume number can be parsed from string.
+    Return float only if number is not an int. Assume number can be parsed from
+    string.
     """
     try:
         return int(s)
