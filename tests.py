@@ -1,5 +1,7 @@
 import unittest
 
+from utils import *
+
 
 class SumTestCase(unittest.TestCase):
     @classmethod
@@ -16,11 +18,14 @@ class SumTestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_one(self):
-        self.assertEqual(True, True)
+    def test_is_int(self):
+        self.assertTrue(is_int("5"))
+        self.assertFalse(is_int("h"))
 
-    def test_two(self):
-        self.assertTrue(True)
+    def test_to_number(self):
+        self.assertEqual(to_number("73"), 73)
+        self.assertEqual(to_number("9.5"), 9.5)
+
 
 if __name__ == '__main__':
     unittest.main()
