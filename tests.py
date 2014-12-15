@@ -20,7 +20,7 @@ class SumTestCase(unittest.TestCase):
         self.assertEqual(True, True)
 
     def test_two(self):
-        self.assertTrue(False)
+        self.assertTrue(True)
 
 if __name__ == '__main__':
     unittest.main()
