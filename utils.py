@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 def strip_currency(s):
     """
     Return a string without leading or trailing currency symbols
