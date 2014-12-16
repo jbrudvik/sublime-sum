@@ -1,6 +1,6 @@
 import unittest
 
-from utils import *
+from sum import *
 
 
 class SumTestCase(unittest.TestCase):
