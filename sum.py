@@ -24,15 +24,6 @@ except ImportError:
     pass
 
 
-def is_int(s):
-    """Return boolean indicating whether a string can be parsed to an int."""
-    try:
-        int(s)
-        return True
-    except ValueError:
-        return False
-
-
 def is_float(s):
     """Return boolean indicating whether a string can be parsed to an float."""
     try:
@@ -40,15 +31,6 @@ def is_float(s):
         return True
     except ValueError:
         return False
-
-
-def is_number(s):
-    """
-    Return boolean indicating whether a string can be parsed to a number.
-
-    Legal numbers are of int or float type.
-    """
-    return is_int(s) or is_float(s)
 
 
 def number_from_string(s):
@@ -70,7 +52,7 @@ def words_in_string(s):
 
     Split on whitespace and some punctuation.
     """
-    return re.split('[\s,[\](){}]', s)
+    return [word for word in re.split('[\s,[\](){}]', s) if word]
 
 
 def string_without_currency(s):
@@ -95,5 +77,5 @@ def sum_of_numbers_in_string(s):
     Strip some punctuation and currency symbols.
     """
     words = [string_without_currency(word) for word in words_in_string(s)]
-    numbers = [number_from_string(word) for word in words if is_number(word)]
+    numbers = [number_from_string(word) for word in words if is_float(word)]
     return sum(numbers)
