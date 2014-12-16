@@ -74,5 +74,5 @@ def sum_of_numbers_in_string(s):
     Strip some punctuation and currency symbols.
     """
     words = [string_without_currency(word) for word in words_in_string(s)]
-    numbers = [number_from_string(word) for word in words if is_number(s)]
+    numbers = [number_from_string(word) for word in words if is_number(word)]
     return sum(numbers)
