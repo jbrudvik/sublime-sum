@@ -1,21 +1,20 @@
 import sublime
 import sublime_plugin
-import re
 
 from utils import *
 
 
 class SumCommand(sublime_plugin.TextCommand):
     def run(self, edit):
+        # Create new buffer
         sum_view = self.view.window().new_file()
         sum_view.set_name('Sum')
 
+        # Insert sum of numbers from original buffer into new buffer
         file_text = self.view.substr(sublime.Region(0, self.view.size()))
-        words = [s for s in re.split('[\s,[\](){}]', file_text)]
-        stripped_words = [strip_currency(s) for s in words]
-        numbers = [to_number(s) for s in stripped_words if is_number(s)]
-        result = sum(numbers)
+        file_sum = sum_of_numbers_in_string(file_text)
+        sum_view.insert(edit, 0, str(file_sum))
 
-        sum_view.insert(edit, 0, str(result))
+        # Make new buffer read-only and never report dirty status
         sum_view.set_read_only(True)
         sum_view.set_scratch(True)

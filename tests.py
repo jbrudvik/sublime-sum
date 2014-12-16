@@ -23,8 +23,8 @@ class SumTestCase(unittest.TestCase):
         self.assertFalse(is_int("h"))
 
     def test_to_number(self):
-        self.assertEqual(to_number("73"), 73)
-        self.assertEqual(to_number("9.5"), 9.5)
+        self.assertEqual(number_from_string("73"), 73)
+        self.assertEqual(number_from_string("9.5"), 9.5)
 
 
 if __name__ == '__main__':
