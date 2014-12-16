@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import re
+
 try:
     import sublime
     import sublime_plugin
