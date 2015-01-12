@@ -1,0 +1,6 @@
+[
+  {
+    "caption": "Sum: Calculate sum of all numbers in file",
+    "command": "sum"
+  }
+]
